@@ -1,0 +1,130 @@
+
+SystemName  leads
+SystemLabel leads
+
+==================================================
+==================================================
+# SPECIES AND BASIS
+
+# Number of species 
+NumberOfSpecies 1
+%block ChemicalSpeciesLabel
+  1  79 Au 
+%endblock ChemicalSpeciesLabel
+
+%block    PAO.BasisSizes
+  Au        SZ          
+%endblock PAO.BasisSizes
+
+%block PS.lmax
+  Au  2       
+%endblock PS.lmax
+
+==================================================
+==================================================
+# K-points
+
+%block kgrid_Monkhorst_Pack
+3   0   0   0.0
+0   3   0   0.0
+0   0   100  0.0
+%endblock kgrid_Monkhorst_Pack
+
+==================================================
+==================================================
+# UNIT CELL AND ATOMIC POSITIONS
+
+# UNIT CELL
+LatticeConstant       1.00 Ang
+%block LatticeVectors
+30.00000000   0.00000000000   0.0000000000
+0.000000000   30.0000000000   0.0000000000
+0.000000000   0.00000000000   12.21000000
+%endblock LatticeVectors 
+
+# Atomic coordinates
+NumberOfAtoms 27
+AtomicCoordinatesFormat Ang
+%block AtomicCoordinatesAndAtomicSpecies  
+    1.4389620000     1.4389620000     0.0000000000   1  Au    1
+    4.3168870000     1.4389620000     0.0000000000   1  Au    2
+    4.3168870000     4.3168870000     0.0000000000   1  Au    3
+    1.4389620000     4.3168870000     0.0000000000   1  Au    4
+    2.8779250000     0.0000000000     2.0350000000   1  Au    5
+    2.8779250000     2.8779250000     2.0350000000   1  Au    6
+    1.4389620000     1.4389620000     4.0700000000   1  Au    7
+    4.3168870000     1.4389620000     4.0700000000   1  Au    8
+    5.7558490000     2.8779250000     2.0350000000   1  Au    9
+    4.3168870000     4.3168870000     4.0700000000   1  Au   10
+    0.0000000000     2.8779250000     2.0350000000   1  Au   11
+    1.4389620000     4.3168870000     4.0700000000   1  Au   12
+    2.8779250000     5.7558490000     2.0350000000   1  Au   13
+    2.8779250000     0.0000000000     6.1050000000   1  Au   14
+    2.8779250000     2.8779250000     6.1050000000   1  Au   15
+    1.4389620000     1.4389620000     8.1400000000   1  Au   16
+    4.3168870000     1.4389620000     8.1400000000   1  Au   17
+    5.7558490000     2.8779250000     6.1050000000   1  Au   18
+    4.3168870000     4.3168870000     8.1400000000   1  Au   19
+    0.0000000000     2.8779250000     6.1050000000   1  Au   20
+    1.4389620000     4.3168870000     8.1400000000   1  Au   21
+    2.8779250000     5.7558490000     6.1050000000   1  Au   22
+    2.8779250000     0.0000000000    10.1750000000   1  Au   23
+    2.8779250000     2.8779250000    10.1750000000   1  Au   24
+    5.7558490000     2.8779250000    10.1750000000   1  Au   25
+    0.0000000000     2.8779250000    10.1750000000   1  Au   26
+    2.8779250000     5.7558490000    10.1750000000   1  Au   27
+%endblock AtomicCoordinatesAndAtomicSpecies
+
+
+==================================================
+==================================================
+# General variables
+
+#ElectronicTemperature  100 K 
+MeshCutoff           350. Ry
+xc.functional         LDA           # Exchange-correlation functional
+xc.authors            CA 
+SpinPolarized .true.
+SolutionMethod Diagon
+
+==================================================
+==================================================
+# SCF variables
+
+DM.MixSCF1   T
+MaxSCFIterations      300           # Maximum number of SCF iter
+DM.MixingWeight       0.03          # New DM amount for next SCF cycle
+DM.Tolerance          1.d-4         # Tolerance in maximum difference
+DM.UseSaveDM          true          # to use continuation files
+DM.NumberPulay         5
+Diag.DivideAndConquer  no
+Diag.ParallelOverK    yes
+
+==================================================
+==================================================
+# MD variables
+
+MD.FinalTimeStep 1
+MD.TypeOfRun CG
+MD.NumCGsteps     000
+MD.UseSaveXV      .true.
+
+==================================================
+==================================================
+# Output variables
+
+WriteMullikenPop                1
+WriteBands                      .true.
+SaveRho                         .false.
+SaveDeltaRho                    .false.
+SaveHS                          .true.
+SaveElectrostaticPotential      True 
+SaveTotalPotential              no
+WriteCoorXmol                   .true.
+WriteMDXmol                     .true.
+WriteMDhistory                  .false.
+WriteEigenvalues                yes
+
+==================================================
+==================================================
+
